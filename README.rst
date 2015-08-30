@@ -26,7 +26,7 @@ My last major changes on the source code of this interpreter was on September 19
 Please take a look at "valuevar.cpp" file. It took me long time to solve the problems of this part of interpreter
 because of the interesting behavior of variables in REXX and my emphasize on full object oriented programming.
 
-The following links has more information about REXX:
+The following links have more information about REXX:
 
 *  `<http://regina-rexx.sourceforge.net/>`_
 *  `<https://en.wikipedia.org/wiki/Rexx>`_
