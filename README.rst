@@ -1,6 +1,6 @@
 This is my BS final project on writing an interpreter for REXX programming language on DOS operating system.
 
-I've used Borland C++ 4.5 compiler to compile the code of this project.
+I had used Borland C++ 4.5 compiler to compile the code of this project.
 
 Internet was not spread in Iran when I was writing this interpreter. 
 Therefore my knowledge about REXX was based on what Dr. Towhidi taught me and some few documents.
