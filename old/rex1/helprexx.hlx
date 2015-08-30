@@ -1,0 +1,61 @@
+list of operator is
+	  ( ) 
+	+ - ! 
+	** 
+	 *  / "
+	 + - 
+	 ||   
+	 = == <> < <= > >= 
+	 &  |  &&             ::::and or  ExOr
+list of  instruction   
+ IF I=1 THEN SAY HELLO 
+ ELSE SAY GOOD  
+ DO I=1 TO 50 BY 20 
+	 DO WHILE I =1 " 
+	 DO UNTIL I=1  
+	 DO FOR 5    
+	 DO FOREVER   
+	end           
+	 can not compund the above instruction 
+	 say a+b ahmad
+	 pull x,y,z
+	 arg a,b         /* should in first line of procedure */
+	 leave j
+	 return i
+	 exit  /* without any  return value  */
+	 select /*  in one line only   */
+	 when i=1 then say hello
+	  ........
+	 [otherwise]
+	 end
+	 proc1: procedure expose a ,b
+procedure keyword need
+
+myDebugKey(2,"press any key to continue ")
+clrscr()
+a. =0   /*  stem init   */
+a .b  is invalid      correct->a.b without space
+you can not use command of OS   in lines
+signal, parse,iterate,trace,format,queue,push,pop::::not implement now
+trace :: can add to my program ver easy but not!!!!!
+call function in other file only with file name
+"you can not call other procedure in other file
+"but you can call file name such as::y=xxx2()/*xxx2.rex is file*/
+search file in current directory 
+do not use keyword as variable or is say instruction 
+say hello !!! ?? ::is invalid  correct->say hello '!!!' '??' 
+binary number and hexadicimal number not inplemented 
+end of any procedure you can remove ' return ' 
+
+return the value ''    
+
+"interpreter have to part 1_parser 2_executer 
+list of  function  
+  abs(number)      
+  comompare(a,b)    
+  substr(s1,first [,length])
+
+see the program xxx.rex , xxx2.rex
+
+
+

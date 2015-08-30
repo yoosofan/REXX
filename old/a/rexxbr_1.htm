@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0054)file://Z:\yousefan\rexxhtml\Rexx%20brief%20history.htm -->
+<!-- saved from url=(0045)http://www2.hursley.ibm.com/rexx/rexxhist.htm --><HTML><HEAD><TITLE>Rexx brief history</TITLE>
+<META content="text/html; charset=windows-1252" http-equiv=Content-Type>
+<META content="MSHTML 5.00.2314.1000" name=GENERATOR></HEAD>
+<BODY>
+<H2><A href="http://www2.hursley.ibm.com/rexx/rexx.htm"><IMG alt="" 
+src="Rexx brief history_files/rexx32p.gif"></A> A brief History of Rexx</H2>
+<P><EM>[Copyright © IBM Corporation, 1994. All rights reserved.]</EM> 
+<HR>
+
+<P>Before computers were inexpensive enough for widespread individual ownership, 
+they usually had to be shared by many people. IBM's most successful time-sharing 
+operating system in the 1970s and 1980s was the VM/370 (Virtual Machine/370) 
+operating system. This operating system provided a personal computer for each of 
+its users through the Virtual Machine concept--very similar to the Virtual DOS 
+Machines (VDMs) in OS/2. 
+<P>Any System/370 operating system can run in a VM virtual machine; the most 
+popular for interactive development is the Conversational Monitor System (CMS). 
+CMS is a single-user operating system that borrowed many of its features from 
+earlier systems such as Multics, including the concept of controlling the system 
+by commands. CMS's command language is still one of the simplest and most 
+readable ever devised. 
+<P>Like other command-driven operating systems, CMS provides the ability to 
+"wrap up" commands with a programming logic; initially, these simple programs 
+were written in a language called EXEC. This language, though not much more 
+advanced than the PC-DOS "Batch" language, allowed many enhancements and new 
+commands to be written rapidly and much more easily than in the native assembler 
+language used for writing low-level commands. 
+<P>In the 1970s, C. J. Stephenson and others at the IBM T. J. Watson Research 
+Center realized that, if applied consistently, this concept of a command 
+programming language was extraordinarily powerful: a single language could 
+provide the extension language--or "macro" language--for a wide variety of 
+applications. They took the EXEC language and generalized and improved it for 
+this enhanced role; the new language was called EXEC 2. 
+<P>EXEC 2 proved the concept of a general macro language. It was used mostly for 
+writing system commands and macros for a wide variety of editors. Its 
+interpreter was, and probably still is, the finest example of efficient and 
+robust System/370 assembler code. 
+<P>However, EXEC 2 (like its predecessor and most other macro languages of the 
+1970s and even early 1980s) assumed that macro programs would be mostly 
+commands, with relatively little "glue" of logic and variables. Accordingly, it 
+was designed to allow commands (literal strings, usually in upper case) to be 
+written plainly, whereas language keywords and variables were identified by a 
+prefix of an ampersand. A command, followed by a test of its result, might look 
+like this: <PRE>   COPYFILE &amp;FNAME &amp;FTYPE &amp;FMODE = BACKUP =
+   &amp;IF &amp;RC GT 0 &amp;TYPE Copy failed with return code &amp;RC
+</PRE>
+<P>This style, while adequate for simple commands, proved cumbersome for the 
+large and complex programs and macros that were soon being written in EXEC 2. It 
+became clear to me that a new language was needed, one based on the more 
+classical syntax and semantics used by languages in the tradition of Algol, 
+Pascal, and PL/I, yet including the command and string programming facilities 
+that EXEC 2 had proven to be so effective and powerful. 
+<P>This new language, initially called REX (because the name sounded nice) was 
+very much driven by the desire to make programming easy. It borrows most of its 
+features from other languages, especially PL/I and EXEC 2, but these features 
+are modified or expressed in ways that make them easy to use (but not 
+necessarily easy to implement!). The code fragment shown above would look quite 
+different; literal strings are quoted, but language keywords and variable names 
+are not obfuscated by special characters: <PRE>   'COPYFILE' fname ftype fmode '= BACKUP ='
+   if rc&gt;0 then say 'Copy failed with return code' rc
+</PRE>
+<P>This difference between the two languages becomes more striking as the 
+complexity of the program increases. 
+<P>The first specification for the language is dated 29 March 1979. This was 
+written before any implementation was even designed, and it was circulated to a 
+number of people for comment: this began the tradition of documentation before 
+implementation that characterized the development of Rexx. This first 
+specification included three sample programs written in Rexx to show how the 
+language would look; those programs would seem familiar to today's Rexx 
+programmers, although some details have changed. 
+<P>My first implementation of Rexx was made freely available over IBM's 
+world-wide internal network in late 1979 and rapidly became popular. The network 
+made it easy for people to exchange ideas and make suggestions for improvements. 
+Also, because the language was limited to one (large) organization, it was 
+possible to make some rather large changes in response to these suggestions. For 
+example, one change, in which the ARG instruction replaced an earlier ARGS 
+instruction, required updating hundreds of thousands of Rexx programs. 
+<P>As a result of this direct feedback, the language quickly evolved to meet the 
+needs of its users through a number of releases over the next few years. By 1982 
+it had become essentially the language known in OS/2 2.1 today; its name gained 
+an "X" to avoid any confusion with other products. Rexx was included in the 
+third release of IBM's VM/System Product, shipped in 1983. 
+<P>It was soon discovered that IBM's customers liked the language just as much 
+as did the "internal" users. Only two years later, the first non-IBM 
+implementation (by the Mansfield Software Group, for PC-DOS) became available; 
+this product, Personal Rexx, is now sold by Quercus Systems for both DOS/Windows 
+and OS/2. 
+<P>In 1987 IBM announced that Rexx was to be the Procedures Language for its 
+Systems Application Architecture (SAA), which was followed by implementations 
+for a number of operating systems, including MVS/TSO, AS/400, and (in 1989), the 
+Extended Edition of OS/2 1.2. 
+<P>The first Rexx compiler was developed at IBM's Vienna Laboratory, following 
+research by the IBM Haifa Scientific Center, and was delivered to customers in 
+1989. By 1990 there was sufficient interest in the language to justify the first 
+international Rexx Symposium for Developers and Users, organized by the Stanford 
+Linear Accelerator Center in California. This symposium has been held annually 
+since then. 
+<P>Rexx became part of the base OS/2 product with OS/2 1.3: this version was the 
+first implementation of the Rexx 4.00 language defined and published in 1990. 
+Enhancements to performance and to the Rexx function packages provided with OS/2 
+were added for OS/2 2.0, and in OS/2 2.1, the Multimedia component of OS/2 
+provided commands that allow the control of Multimedia devices from Rexx. 
+<P>Recent [1994] versions of Rexx from IBM include Rexx for the AIX/6000 
+operating system, Rexx for Netware, and Rexx for the CICS transaction monitor. 
+Rexx is now available for most significant operating systems, and from several 
+vendors, not just IBM. Freeware or shareware versions, often excellent, are also 
+available for PC-DOS, Unix, and other systems. Work towards an ANSI standard for 
+Rexx has been in progress since 1991, with a publication target date of 1995. 
+<HR>
+
+<P><A href="http://www2.hursley.ibm.com/mfcsumm.htm">Mike Cowlishaw</A> 
+<ADDRESS>mfc@vnet.ibm.com</ADDRESS></BODY></HTML>

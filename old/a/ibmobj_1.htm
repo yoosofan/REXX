@@ -1,0 +1,286 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0109)file://Z:\yousefan\rexxhtml\IBM%20Object%20REXX%20%20More%20information%20%20Object%20REXX%20Introduction.htm -->
+<!-- saved from url=(0052)http://www.software.ibm.com/ad/obj-rexx/orx-int.html --><HTML><HEAD><TITLE>IBM Object REXX : More information : Object REXX Introduction</TITLE>
+<META content="text/html; charset=windows-1252" http-equiv=Content-Type><!--Note the proper title syntax to use:  IBM yourproductname colon your section name colon document name.  No other syntax should be used.--><!--All meta tags must be used and none should be added or deleted.-->
+<META content="Rexx Development" name=owner>
+<META content=1999/09/30 name=review>
+<META content=Public name=security><!--Each time you update this page, change the date on the next line-->
+<META content="March 19,1999" name=update>
+<META 
+content="Object REXX Application Development Developer System Programming Language OpenDoc SOM Objects Object Technology ISV software vendor support object-oriented programs Windows Windows95 WindowsNT NT AS/400 OS/400 S/390 MVS AIX OS/2 OS2 RISC RS/6000" 
+name=keywords>
+<META 
+content="IBM Object REXX is a powerful scripting language for professional programmers and for beginners to program for example, complex applications, to automate system controls, or to handle network operations" 
+name=description><!--This include statement is for future use, do not delete.--><!--#include virtual="/general/warning.inc" --><!--This include statement is for future use, do not delete.--><!--#include virtual="/general/warning.inc" --><!--This is the masthead include statement.-->
+<META content="MSHTML 5.00.2314.1000" name=GENERATOR></HEAD>
+<BODY bgColor=#ffffff leftMargin=2 text=#000000 topMargin=2 vLink=#0000ff 
+MARGINWIDTH="2" MARGINHEIGHT="2">
+<TABLE border=0 cellPadding=0 cellSpacing=0 width=600>
+  <TBODY>
+  <TR>
+    <TD colSpan=2 width=600>
+      <TABLE border=0 cellPadding=0 cellSpacing=0 width=600>
+        <TBODY>
+        <TR>
+          <TD vAlign=top><A href="http://www.ibm.com/"><IMG alt=IBM border=0 
+            height=24 
+            src="IBM Object REXX  More information  Object REXX Introduction_files/ibm_logo.gif" 
+            width=57></A><IMG alt="" border=0 height=24 
+            src="IBM Object REXX  More information  Object REXX Introduction_files/logo_sp.gif" 
+            width=395></TD>
+          <TD rowSpan=2><A href="http://www.ibm.com/shop/"><IMG alt="Shop IBM" 
+            border=0 height=45 
+            src="IBM Object REXX  More information  Object REXX Introduction_files/i_shopibm.gif" 
+            width=49></A></TD>
+          <TD rowSpan=2><A href="http://www.ibm.com/support/"><IMG alt=Support 
+            border=0 height=45 
+            src="IBM Object REXX  More information  Object REXX Introduction_files/i_support.gif" 
+            width=45></A></TD>
+          <TD rowSpan=2><A href="http://www.ibm.com/download/"><IMG 
+            alt=Download border=0 height=45 
+            src="IBM Object REXX  More information  Object REXX Introduction_files/i_download.gif" 
+            width=54></A></TD></TR>
+        <TR>
+          <TD><A href="http://www.ibm.com/"><IMG alt=Home border=0 height=21 
+            src="IBM Object REXX  More information  Object REXX Introduction_files/n_home.gif" 
+            width=38></A><A href="http://www.ibm.com/news/"><IMG alt=News 
+            border=0 height=21 
+            src="IBM Object REXX  More information  Object REXX Introduction_files/n_news.gif" 
+            width=34></A><A href="http://www.ibm.com/products/"><IMG 
+            alt=Products border=0 height=21 
+            src="IBM Object REXX  More information  Object REXX Introduction_files/n_products.gif" 
+            width=52></A><A href="http://www.ibm.com/services/"><IMG 
+            alt=Services border=0 height=21 
+            src="IBM Object REXX  More information  Object REXX Introduction_files/n_services.gif" 
+            width=51></A><A href="http://www.ibm.com/solutions/"><IMG 
+            alt=Solutions border=0 height=21 
+            src="IBM Object REXX  More information  Object REXX Introduction_files/n_solutions.gif" 
+            width=54></A><A href="http://www.ibm.com/ibm/"><IMG alt="About IBM" 
+            border=0 height=21 
+            src="IBM Object REXX  More information  Object REXX Introduction_files/n_about.gif" 
+            width=59></A><IMG alt="" border=0 height=21 
+            src="IBM Object REXX  More information  Object REXX Introduction_files/n_sp.gif" 
+            width=164></TD></TR></TBODY></TABLE>
+      <TABLE bgColor=#ccccff border=0 cellPadding=0 cellSpacing=0 width=600>
+        <TBODY>
+        <TR>
+          <TD align=right bgColor=#003366 rowSpan=2 vAlign=center width=1><IMG 
+            alt="" border=0 height=1 hspace=0 
+            src="IBM Object REXX  More information  Object REXX Introduction_files/clear.gif" 
+            width=1></TD>
+          <TD align=right bgColor=#ffffff colSpan=3 width=598><IMG alt="" 
+            border=0 height=1 hspace=0 
+            src="IBM Object REXX  More information  Object REXX Introduction_files/clear.gif" 
+            width=598></TD>
+          <TD align=right bgColor=#9999cc rowSpan=2 vAlign=center width=1><IMG 
+            alt="" border=0 height=30 hspace=0 
+            src="IBM Object REXX  More information  Object REXX Introduction_files/clear.gif" 
+            width=1></TD></TR>
+        <TR>
+          <TD align=right bgColor=#ffffff vAlign=center width=1><IMG alt="" 
+            border=0 height=25 hspace=0 
+            src="IBM Object REXX  More information  Object REXX Introduction_files/clear.gif" 
+            width=1></TD>
+          <TD align=right bgColor=#c8d8f8 vAlign=center width=148><FONT 
+            color=#000000 face=ARIAL,HELV,HELVETICA 
+          size=2><B>Search</B></FONT>&nbsp;</TD>
+          <TD align=left bgColor=#c8d8f8 vAlign=center width=449>
+            <FORM action=http://www.ibm.com/search method=get><INPUT name=v 
+            type=hidden value=9> <INPUT class=INPUT maxLength=100 name=q size=15 
+            HEIGHT="17"> <INPUT align=absMiddle alt=go border=0 height=14 
+            hspace=0 
+            src="IBM Object REXX  More information  Object REXX Introduction_files/go.gif" 
+            type=image vspace=2 width=16></TD></TR>
+        <TR>
+          <TD align=right bgColor=#ffffff colSpan=5 width=600><IMG alt="" 
+            border=0 height=4 hspace=0 
+            src="IBM Object REXX  More information  Object REXX Introduction_files/undersearch-2.gif" 
+            width=600></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD align=right width=600><!--#include virtual="/general/warning.inc" -->
+      <TABLE border=0 cellPadding=0 cellSpacing=0 width=590>
+        <TBODY>
+        <TR>
+          <TD align=left vAlign=top width=590></FORM>
+            <TABLE border=0 cellPadding=0 cellSpacing=0 width=590>
+              <TBODY>
+              <TR>
+                <TD><NOBR><FONT color=#3333cc face="Helvetica, Helv, Arial" 
+                  size=1><!--TOP NAVIGATION - The next include statement is your breadcrumb trail.  Format for this include:  /ad/vajava/inc/navback-library.inc--><!--This is your breadcrumb trail include.  Each section in your product directory needs to have one.  Naming convention is:  /ad/prodname subdir/inc/navback-sectionname.inc--><!-- Change level of navigation - do not remove the colons between each entry or any of the entries.--><A 
+                  href="http://www.ibm.com/">IBM</A> : <A 
+                  href="http://www.software.ibm.com/">Software</A> : <A 
+                  href="http://www.software.ibm.com/ad/">Application 
+                  Development</A> : <A 
+                  href="http://www.software.ibm.com/ad/obj-rexx/">Object 
+                  REXX</A> : <A 
+                  href="http://www.software.ibm.com/ad/obj-rexx/moreinfo.html">More 
+                  information</A> </FONT></NOBR></TD></TR></TBODY></TABLE></TD></TR>
+        <TR>
+          <TD align=left vAlign=top><IMG border=0 height=3 src="" 
+        width=590></TD></TR></TD></TR></TBODY></TABLE>
+      <TABLE border=0 cellPadding=0 cellSpacing=0 width=590>
+        <TBODY>
+        <TR>
+          <TD vAlign=top><FONT face="arial, helv, helvetica" size=2>
+            <P><BR><!--End TOP NAVIGATION--><!--No opening body, table or font tags necessary - they are in the include statements.--><!--*************************************************************************--><!--Begin TITLE area--><!--OPTIONAL image area--><!--Specify image path & alt tag - change image size as necessary to be SMALLER, but no larger than the listed width (130)  and height (90) - Comment out the image statement if you choose not to use it.--><!--<img src="/ad/proddir/images/imagename.gif" alt="Place descriptive alt tag here" border="0" width="130" height="90" align="right">--><!--End optional image area--><!--Begin title area--><!--Page title in the next section - do not center. Uncomment the break tag if you need two lines.--><B><FONT 
+            color=#3333cc size=4>Object REXX Introduction <!--<br>--></FONT></B><!--End title area--><!--Begin subtitle area--><!--Page subtitle in the next section - do not center. Uncomment the break tag if you need two lines.--><B><FONT 
+            color=#3333cc size=3><!--<br>--></FONT></B><!--End subtitle area--><!--<br>--><!--Uncomment the br above if you use EITHER the author and date optional areas.--><!--OPTIONAL: Put name of author, conference, or other source of information on next line or lines.  Uncomment the br tag if you use this optional area.--><!--<br>--><!--OPTIONAL: Put date written, published or updated on next line.--><!--End TITLE area-->
+            <P><!--Begin CONTENT area--><!--OPTIONAL: Content header on next line.  Comment out this area if you don't use.--><B><FONT 
+            size=3></FONT></B><BR><!--End optional content header area--><!--Begin CONTENT-->
+            <P>Anyone interested in getting a basic understanding of 
+            object-oriented concepts should read this information. Using this 
+            information, experienced programmers can learn about the REXX 
+            language and how it is like and unlike other structured programming 
+            languages. Programmers who want to broaden their programming 
+            knowledge can learn object-oriented programming with REXX. Users 
+            already experienced with REXX can learn about object-oriented 
+            programming (OO) in general, and OO programming with REXX in 
+            particular. </P>
+            <P>How was it possible to add object-orientation to traditional REXX 
+            while maintaining compatibility? The trick was in the handling of 
+            variables. In traditional (or "classic") REXX, all data was stored 
+            as strings. The strings represented character data as well as 
+            numeric data. From an object-oriented perspective, we might say that 
+            traditional REXX had one kind of objects: strings. In 
+            object-oriented terminology, each string variable was an object that 
+            was an instance of the String class. </P>
+            <P>We changed REXX so that variables could reference objects other 
+            than strings. In addition to a string class, REXX now includes 
+            classes for creating arrays, queues, streams, and many other useful 
+            objects. Objects in these new REXX classes are manipulated by 
+            methods instead of traditional functions. To activate a method, you 
+            just send the object a message. </P>
+            <P>For example, instead of using the SUBSTR function on a string 
+            variable Name, you send a SUBSTR message to the string object.</P>
+            <P>Here is the old way: </P><PRE>s=substr(name,2,3)
+</PRE>
+            <P>And here is the new way: </P><PRE>s=name~substr(2,3)
+</PRE>
+            <P>The tilde (~) character is the REXX message send operator. We 
+            call it the twiddle. The object receiving the message is to the left 
+            of the twiddle. The message is to the right. In this example, the 
+            Name object is sent the SUBSTR message. The numbers in parentheses 
+            (2,3) are arguments sent as part of the message. The SUBSTR method 
+            is run for the Name object, and the result is assigned to the s 
+            string object. </P>
+            <P>For the new classes (array, queue, and so on), methods are 
+            provided, but not equivalent functions. For example, suppose you 
+            want to use the new REXX array object instead of the traditional 
+            string-based stem variables (such as text.1, text.2, and so on). To 
+            create an array object of five elements, you would send a NEW 
+            message to the array class as follows:</P><PRE>myarray=.array~new(5)
+</PRE>
+            <P>A new instance, named Myarray, of the Array class is created. (A 
+            period precedes a built-in class name in an expression, so .ARRAY is 
+            correct, not just ARRAY.) The Myarray array object has five 
+            elements. Some of the other methods, besides NEW, for array objects 
+            are PUT, AT, REMOVE, SIZE, [], and []=. </P>
+            <P>By adding object technology to its repertoire of traditional 
+            programming techniques, REXX has evolved into an object-oriented 
+            language, like Smalltalk. Object REXX accommodates the programming 
+            techniques of traditional REXX while adding new ones. With Object 
+            REXX, you can use the new technology as much or as little as you 
+            like, at whatever pace you like. You can use classic and object 
+            techniques together. You can ease into the object world gradually, 
+            building on the REXX skills and knowledge you already have. </P>
+            <P>A REXX program is a text file, typically created using a text 
+            editor or word processor, that contains a list of instructions for 
+            your computer. REXX programs on Windows are interpreted, which means 
+            the program is processed line by line (like a batch file). 
+            Consequently, you don't need to compile and link REXX programs. To 
+            run a REXX program, all you need is the Object REXX interpreter, and 
+            the ASCII text file containing the program. </P>
+            <P>If you are familiar with programming languages such as C, Pascal, 
+            or Basic, you will find that REXX is similar. An important 
+            difference is that REXX variables have no data type and are not 
+            declared. Instead, REXX determines from context whether the variable 
+            is a string, for instance, or a number. Moreover, a variable that 
+            was treated as a number in one instruction can be treated as a 
+            string in the next. </P>
+            <P>REXX's flexibility in variable handling makes it easy for you to 
+            write programs quickly. Much of the boiler-plate instructions found 
+            in other languages is not needed. REXX keeps track of variables for 
+            you. It allocates and deallocates memory as necessary. </P>
+            <P>Another important difference is that you can execute system 
+            commands and other applications from a REXX program. This is similar 
+            to what you can do with a Batch facility program. REXX, however, 
+            provides a more robust interface. Not only can you execute the 
+            command, you can also receive a return code from the command and use 
+            any displayed output in your REXX program. (The output normally 
+            displayed by a DIR command, for example, can be intercepted by REXX 
+            program and used in subsequent processing.) </P>
+            <P>In addition, REXX can direct commands to environments other than 
+            the running operating system. Some applications provide an 
+            environment to which REXX can direct subcommands of the application. 
+            Some applications also provide functions that can be called from a 
+            REXX program. In these situations, REXX acts as a macro language for 
+            the application. </P>
+            <P>Here is a typical REXX program named GREETING.CMD. It prompts the 
+            user to type in a name and then displays a personalized greeting: 
+            </P><PRE>/* GREETING.CMD -- a REXX program to display a greeting. */
+say 'Please enter your name.'    /* Display a message    */
+pull name                        /* Read response        */
+say 'Hello' name                 /* Display greeting     */
+exit 0                   /* Exit with a return code of 0 */
+</PRE>
+            <P>1) <B>SAY</B> is a REXX instruction that displays a message (like 
+            PRINT in Basic or printf in C). The message to be displayed follows 
+            the SAY keyword. The single quotes are necessary to delimit a 
+            character string. In this case, the character string is Please enter 
+            your name. You can use double quotes (") instead of single quotes if 
+            you wish. </P>
+            <P>2) The <B>PULL</B> instruction reads a line of text from the 
+            standard input (the keyboard), and returns the text in the variable 
+            specified on the instruction. In our example, the text is returned 
+            in the variable name. </P>
+            <P>3) The next <B>SAY</B> instruction provides a glimpse of what can 
+            be done with REXX strings. It displays the word "Hello" followed by 
+            the name of the user, which is stored in variable name. REXX 
+            substitutes the value of name in the expression and displays the 
+            resulting string. You do not need a separate format string as you do 
+            with C or Basic. </P>
+            <P>4) The final instruction, <B>EXIT</B>, ends the REXX program. 
+            EXIT can also return a value. In our example, zero is returned. The 
+            EXIT instruction is optional. </P>
+            <P>Notice that the program begins with a comment. This is not a 
+            requirement, but it is recommended for compatibility with operating 
+            systems, such as OS/2, where the first line in a REXX program must 
+            be a comment line. </P>
+            <P>The Object REXX interpreter is invoked by the program itself on 
+            any <I>OS/2</I>-commandline, for example, "MYREXX.CMD", or is 
+            invoked by the command <B>REXX</B> on <I>Windows 95</I> and 
+            <I>Windows NT</I>.</P>
+            <P>REXX is for running your program in a command window from the 
+            system prompt. To run the program "MYREXX.CMD", for example, use the 
+            command </P><PRE> <B>REXX MYREXX.CMD</B> -&gt; on a Windows system
+ <B>MYREXX.CMD</B>      -&gt; on an OS/2 system
+</PRE>
+            <P>You can stop a REXX program by pressing the Control (Ctrl)+Break 
+            keys. REXX stops running the program and control returns to Windows. 
+            </P>
+            <P>Object REXX includes features typical of an object-oriented 
+            language-features like subclassing, polymorphism, and data 
+            encapsulation. As we said at the outset, Object REXX is an extension 
+            of the traditional REXX language, which has been expanded to include 
+            classes, objects, and methods. These extensions do not replace 
+            traditional REXX functions, or preclude the development or running 
+            of traditional REXX programs. You can program as before, program 
+            with objects, or intermix objects with regular REXX instructions. 
+            You decide when to use REXX's object-oriented features. The REXX 
+            programming concepts that support these features are the subject of 
+            this section. </P>
+            <P>It is not unusual for computer data to represent things in the 
+            physical world-a company's employees, money in a bank account, a 
+            report. Real-world objects are stored as data so the computer can 
+            act upon it to some purposeful end. For example, when you "PRINT a 
+            report," PRINT is the action and report is the object acted upon. 
+            Often multiple actions apply; you could also SEND the report or 
+            ERASE the report. </P><FONT color=#0000ff face=Arial 
+            size=2><B>Commands handling, for example, on <I>Windows 95</I> and 
+            <I>Windows N/T</I></B></A> <FONT color=#000000 face=Arial size=2>
+            <P>From a REXX program you can pass commands to Windows or to 
+            applications designed to work with REXX. When used to run Windows 
+            commands, REXX becomes a powerful substitute for the Windows Batch 
+            Facility. You can use variables, control structures, math, and 
+            parsing to 
+  crea</P></FONT></FONT></FONT></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></BODY></HTML>

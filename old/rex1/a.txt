@@ -1,0 +1,24 @@
+File EXECCLS.CPP:
+ void execProcCls::statement(EinstructionWord &est)
+             statement(ess1);
+             statement(ess1);
+             statement(ess1);
+     statement(est1);
+ if(bb2){cout << " in bb2  " <<endl ;  setStmtNo(ii6); statement(est1);}
+File MAINSCAN.CPP:
+ { exProc.statement(esss1);}
+File SELECTSM.CPP:
+// in valInt[End] the no of statement is presented
+     if(!statement(etlnoc , est) ) errorCallStmt(tcd1 , tcd2);
+File EXEPROC.CPP:
+void execProcCls::statement(EinstructionWord &est)
+  if(vv11.isTrue())    statement(ess1);
+  {statement(ess1); skipStmt(i2);}
+  else{skipStmt(i1); statement(ess1);}
+    statement(est1);
+ if(bb2){ setStmtNo(ii6); statement(est1);}
+File STMT.CPP:
+{containStmtCls *pcss12 = css;bool bb12=statement(etlnoc,est);
+bool  parserCls::statement(bool & etlnoc , EinstructionWord &est)
+File PARSER.CPP:
+   statement(etlnoc , est) ;// return can addLine ;

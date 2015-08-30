@@ -1,0 +1,1091 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0050)file://Z:\yousefan\rexxhtml\programming%20rexx.htm -->
+<HTML><HEAD><TITLE>A REXX Primer</TITLE>
+<META content="text/html; charset=windows-1252" http-equiv=Content-Type><!--
+Author: Thunus@telematique.org (Fran‡ois Thunus)
+Date  : 08 june 96
+File  : rexx.htm
+Last updated: 960622
+Thanks for reading my source code :-)
+-->
+<META content="MSHTML 5.00.2314.1000" name=GENERATOR></HEAD>
+<BODY><BR><I>This page is dedicated to <A href="mailto:mfc@vnet.ibm.com">Mike 
+Cowlishaw</A> </I><BR>
+<H1><A name=Table>Table</A> </H1>
+<UL>
+  <LI><A 
+  href="file:///Z:/yousefan/rexxhtml/programming%20rexx.htm#Foreword">Foreword 
+  </A>
+  <LI><A 
+  href="file:///Z:/yousefan/rexxhtml/programming%20rexx.htm#Introduction">Introduction</A> 
+
+  <LI><A 
+  href="file:///Z:/yousefan/rexxhtml/programming%20rexx.htm#Simple">Simple 
+  batch</A> 
+  <LI><A 
+  href="file:///Z:/yousefan/rexxhtml/programming%20rexx.htm#Controls">Controls 
+  </A>
+  <LI><A href="file:///Z:/yousefan/rexxhtml/programming%20rexx.htm#FFDS">Simple 
+  Samples: File Find / Disk Stats</A> 
+  <LI><A href="file:///Z:/yousefan/rexxhtml/programming%20rexx.htm#GO2">Sample 
+  2: Go/2 </A>
+  <LI><A href="file:///Z:/yousefan/rexxhtml/programming%20rexx.htm#WPS">The 
+  WorkPlace Shell </A>
+  <LI><A href="file:///Z:/yousefan/rexxhtml/programming%20rexx.htm#VISUAL">Go 
+  Visual </A>
+  <LI><A 
+  href="file:///Z:/yousefan/rexxhtml/programming%20rexx.htm#References">References 
+  </A></LI></UL>
+<H1><A name=Foreword>Foreword</A></H1>I am not a professional programmer. 
+<BR>This is good news for you and me. <BR>For you, because if a non programmer 
+can write a tutorial about rexx programming, then it means you don't have to be 
+a veteran guru to enjoy the power of REXX. It's good news for me, because I have 
+a wonderful excuse for all the mistakes, stupidity and other blunders that 
+you'll certainly find in this document :-). Kidding aside, REXX is a wonderful 
+asset of OS/2 and all the systems that run it (PC DOS etc). It is simple enough 
+to be accessible to beginners, and yet powerful enough to be enjoyed by 
+seasonned programmers. Moreover, its ability to use external DLLs means that you 
+can extend REXX by adding any function you think should be available. 
+Conversely, you can call the REXX API from a program, which means that you don't 
+have to reinvent the wheel. This tutorial is intended for os/2 users starting 
+with OS/2 2.30 or 3.0 or WARP. It is probably applicable mutatis mutandis to 
+other systems as well, since REXX exists on a variety of platforms.<BR>This 
+tutorial is aimed at people with some experience of the OS/2 system who have 
+already played with batch files under dos (ie not absolute beginners).<BR>
+<H1><A name=Introduction>Introduction</A></H1>
+<H3>DOS Batches </H3>If you come from the DOS world, I have good news for you: 
+REXX is batch compatible. What I mean by that is that any batch can be 
+transformed into a rexx batch by renaming the extension to "CMD". This is very 
+helpful for dozens of small batches. For example my simplest batch is called 
+X.BAT and consists only of the line "@exit". I also have the x.cmd equivalent. 
+If I need to add something to the path, instead of changing the config.sys 
+settings and rebooting, you can easily write a simple addpath.cmd (or .bat) 
+which looks like: <BR>@echo off <BR>PATH = %PATH%;%1 <BR>echo New path = %PATH% 
+<BR>This is perfectly valid under dos, and under os/2 as well. However, this is 
+just a beginning. Real REXX batches do NOT follow the dos counterpart.<BR>Hear: 
+you may NOT mix rexx instructions with dos instructions. If you take a dos batch 
+and start enhancing it by adding REXX command, the old dos command will no 
+longer be recognized and you'll have to translate everything into rexx. <BR>
+<H3>Rexx Batches </H3>The abovementioned translation is not really a problem, 
+since there are equivalent for all commonly used dos batch instructions, but be 
+careful all the same. Sometimes it is better to rewrite completely the batch 
+from scratch.<BR>
+<H1><A name=Simple>Simple batch</A></H1>A REXX batch always begins with a 
+comment line. A comment is anything enclosed in /* */, as in C. Use and abuse 
+comments. The brilliant solution you just found might not seem so obvious once 
+the beer spirit is gone :-). More seriously, comments are imo an essential part 
+of programming. Think about the maintenance of the code, even by yourself in 2 
+years or so, when the rest of the platform will have changed completely and 
+you'll be dealing with legacy code...<BR>I imagine that you are already familiar 
+with this, but I'll repeat it all the same. In REXX, as in any other programming 
+language, things broadly fall into one of two categories: either it is an 
+instruction, or it is data. Data can be text or numbers. Data can also be either 
+raw data (eg: "this is a string") or a reference to data described somewhere 
+else (aka variable). Instructions can be built-in, or stored in an external DLL. 
+<BR>
+<H3>hello world (1) </H3>/* this is a first REXX batch */<BR>say "Hello world" 
+<H3>hello world (2) </H3>/* this is another REXX batch */<BR>MyVariable='Hello 
+world'<BR>say MyVariable <BR>
+<H3>hello world: comments </H3>As you can see if you cut out the 2 previous 
+examples and tried them out, they do exactly the same thing: display a simple 
+message on the screen.<BR>The advantage of version 2 is obvious: since there is 
+no direct reference to the message being displayed (in jargon: it's not hard 
+coded), you can make changes much more easily. Imagine that you have a rexx 
+script that enables you to connect to your service provider. If you have defined 
+at the top: <BR>network='mynet' <BR>user='pub11111' 
+<BR>password='got111'<BR>phone='111111' <BR>speed=57600 <BR>comport=1 <BR>then 
+the next time you change service provider, you just modify those and that's it. 
+Otherwise, you have to look in the text for every occurence of '1', make sure 
+that it refers to the phone, and change accordingly. Not very practical in long 
+files. You will also notice that a REXX file always begins by a comment line. 
+<H1><A name=Controls>Controls </A></H1>One more boring chapter and we're almost 
+there. I do NOT intend to explain each and every language feature of REXX. There 
+are zillions of people better qualified than me to do that. I'll just explain 
+here what I feel are the necessary structures to get started, and how to load 
+more from DLLs.<BR>When I learn a new computing language, I usually write a 
+simple game program, always the same. You probably have seen it a dozen time as 
+well: the computer "thinks" up a number, and you have a limited number of 
+guesses to find it. Why do I write that stupid game over and over again? Well, 
+it has all the basic components of programming: <BR>
+<UL>
+  <LI>The computer thinking up a number is what we scientists call "random 
+  number generation" 
+  <LI>You display messages on the screen 
+  <LI>You take input from keyboard 
+  <LI>You compare data from the keyboard with a variable and react accordingly 
+  ("conditionnal branch" is the official term) </LI></UL><BR>See 
+<STRONG>one</STRONG> possible way to implement <A 
+href="file:///Z:/yousefan/rexxhtml/jeu.html">this</A>.<BR>However before looking 
+at it, you should definitely finish this tutorial and try to write your 
+own.<BR>Let's start with the simple stuff: writing something on the 
+screen:<BR><BR>say [whatever]<BR><BR>whatever can be a variable or hard coded. 
+For example, try<BR>/* demo */<BR>yourname='joe'<BR>say 'hey 'yourname' 
+where''re you going with that GUI in your hand ?'<BR><BR>Note the double '' to 
+display one '<BR><BR>better still: ask the user name :<BR>/* demo */<BR>say 'who 
+are you ? '<BR>pull yourname<BR>say 'hey 'yourname' where''re you going with 
+that GUI in your hand ?'<BR><BR>Note that PULL converts automatically the result 
+in upper case. That's handy when asking yes or no, because you only have to test 
+if the answer is YES, and not all variations thereof. But sometimes you don't 
+want that, you want the exact string entered by the user. So you use<BR>parse 
+pull yourname<BR>instead<BR>Let us compare the string 'yourname' with 
+something:<BR><BR>/* demo */<BR>say 'who are you ? '<BR>parse pull 
+yourname<BR>say 'hey 'yourname' where''re you going with that gui in your hand 
+?'<BR>if yourname='Joe' then say 'Bet you''re going to see your Lady !' 
+<BR><BR>As many structured languages, REXX can define a block of instructions, 
+much<BR>like the<BR>Begin<BR>End; <BR>of Pascal or the<BR>{<BR>}<BR>of C <BR>the 
+block in Rexx is defined by<BR>Do <BR>End<BR><BR>A block can be useful if you 
+want to group several instructions.<BR>For example, the above becomes:<BR><PRE>/* demo */<BR>
+say 'who are you ? '<BR>
+parse pull yourname<BR>
+say 'hey 'yourname' where''re you going with that gui in your hand ?'<BR>
+if yourname='Joe' then<BR>
+    DO<BR>
+     say 'Bet you''re going to see your Lady !'<BR>
+     say 'Don''t like to see her mess around !'<BR>
+    END<BR>
+</PRE><BR>You can also define instructions when the condition is not met with 
+ELSE:<BR><PRE>/* demo */<BR>
+say 'who are you ? '<BR>
+parse pull yourname<BR>
+say 'hey 'yourname' where''re you going with that gui in your hand ?'<BR>
+if yourname='Joe' then<BR>
+    DO<BR>
+     say 'Bet you''re going to see your Lady !'<BR>
+     say 'Don''t like to see her mess around !'<BR>
+    END<BR>
+    ELSE say 'Not going anywhere, are you ?'<BR>
+</PRE><BR>You can use the block in conjunction with a counter:<BR><PRE>/* demo */<BR>
+say 'who are you ? '<BR>
+parse pull yourname<BR>
+say 'hey 'yourname' where''re you going with that gui in your hand ?'<BR>
+if yourname='Joe' then<BR>
+    DO counter=1 to 3 <BR>
+     say 'Bet you''re going to see your Lady !'<BR>
+     say 'Don''t like to see her mess around !'<BR>
+    END<BR>
+<BR>
+</PRE>If you have several possibilities to test, you may want to use something a 
+bit more complex than the IF..THEN, namely SELECT/END..WHEN, which is the 
+equivalent of the CASE in Pascal or the SWITCH in C (note the END to finish off 
+the SELECT): <PRE>/* demo */<BR>
+say 'who are you ? '<BR>
+parse pull yourname<BR>
+say 'hey 'yourname' where''re you going with that gui in your hand ?'<BR>
+SELECT
+WHEN yourname='Joe' then<BR>
+    DO counter=1 to 3 <BR>
+     say 'Bet you''re going to see your Lady !'<BR>
+     say 'Don''t like to see her mess around !'<BR>
+    END<BR>
+WHEN yourname='Brian' then<BR>
+    DO  <BR>
+     say 'It''s a tough life !'<BR>
+    END<BR>
+OTHERWISE<BR>
+    DO  <BR>
+     say 'Nothing special for you, mate !'<BR>
+    END<BR>
+END /*select*/ <BR>
+</PRE><BR>Well, I guess that's about it. You now have most of the commands 
+you'll ever need.<BR>The block ability combined with another branching keyword 
+(SIGNAL) and the possibility to give a name to certain part of code allow you to 
+create independant routines (procedures/functions) which in turn become 
+extensions of the language since you can use them as if they were built in 
+instructions. For example (taken from cybernet.cmd in your tcpip\bin 
+directory):<BR><PRE>/*--------------------------------------------------------------------------*/<BR>
+/*                               readpass ()                                */<BR>
+/* Routine used to read a password from the user without echoing the        */<BR>
+/* password to the screen.                                                  */<BR>
+/*--------------------------------------------------------------------------*/<BR>
+<BR>
+readpass:<BR>
+  answer = ''<BR>
+  do until key = cr<BR>
+    key = slip_getch()<BR>
+    if key \= cr then do<BR>
+      answer = answer || key<BR>
+    end<BR>
+  end  <BR>
+  say ''<BR>
+  return answer<BR>
+</PRE><BR>Signal is the equivalent of GOTO. The fact that the label is closed by 
+a return statement transforms the GOTO in a GOSUB.<BR><BR>A couple of things 
+more before going into real life application: 
+<UL>
+  <LI>to test if something is not what you expect, use &lt;&gt;. 
+  <LI>Another very useful form of data is what can be compared to a database 
+  record with multiple fields. You use that for things that go together, for 
+  example all data about a book: author, isbn, publisher, etc. That is the 
+  equivalent of the RECORD in Pascal or the STRUCT in C. See the Quercus text 
+  for more on this. 
+  <LI>You can tell a Rexx batch to take the arguments from the command line with 
+  the ARG instruction, followed by the name(s) of the variable(s) you assign the 
+  parameter(s) to. If you launch the batch from the desktop, simply put in the 
+  parameter field of the settings [Parameters ?] and the system will pop up a 
+  dialog box before launching the rexx file. 
+  <LI>Some functions are part of the REXX language but stored in DLL. You have 
+  to load the DLL first. (See below) </LI></UL>That's about it as far as the 
+theory goes. You can look up in the REXX reference the names of the built-in 
+rexx functions. For the rest, it's like any other programming language. You call 
+the function like this:<BR><PRE>result=Myfunction(parameters)
+if result &lt;&gt;0 then do <BR>
+       bla bla
+      end else do
+       bli bli
+      end
+</PRE>What makes REXX so powerful is the ability to pull its functions from an 
+external DLL. It means that you can find DLL for almost everything (dbase file 
+access, shutdown the machine, do a ftp session, etc), or even write your own in 
+any language that supports DLL creation.<BR>I am not going to review all REXX 
+functions one by one. So far you have seen the basics of the language. Now it is 
+just a matter of looking up the REXX reference and see whether there is a 
+function that does what you want or if you can tweak an existing function into 
+doing what you want. Here is a skeleton of application which I use; it will load 
+the REXX functions, handle any problem nicely and tell me where the said problem 
+lies. You can also use PMREXX to debug your REXX program, executing them line by 
+line.<BR><PRE>/* REXX skeleton */
+Call RxFuncAdd 'SysLoadFuncs', 'REXXUTIL', 'SysLoadFuncs'
+Signal on Syntax Name LoadCheck /* branch to error handling           */
+Call SysLoadFuncs
+LoadCheck:                      /* rc of 43 means REXXUTILs not found */
+If rc=43 Then Do
+   Say ''
+   Say 'ERROR: Not able to load REXXUTILs. Perhaps REXX not installed or'
+   Say '       REXXUTIL.DLL not found in a LIBPATH drive/directory.'
+   Exit
+End
+
+signal on failure name FAILURE  /* branch to error handling           */
+signal on halt    name HALT     /* branch to error handling           */
+signal on syntax  name SYNTAX   /* branch to error handling           */
+
+/* End of the header. The actual code goes here                       */
+
+
+/* end of batch file What follows is error handling routines          */
+
+ERROR:
+Say 'Installation error at line ' sigl
+Signal CLEANUP
+
+FAILURE:
+Say 'Failure error at line ' sigl
+Signal CLEANUP
+
+HALT:
+Say 'Halt error at line ' sigl
+Signal CLEANUP
+
+SYNTAX:
+Say 'Syntax error at line ' sigl
+Signal CLEANUP
+
+CLEANUP:
+exit
+
+</PRE>Enough theory, let's see what you can do in practice.<BR><BR>
+<H1><A name=FFDS>Simple Samples: File Find / Disk Stats</A></H1>
+<H3>File Find</H3><PRE>/* Rechercher des fichiers sur le disque dur */
+/* avec SysFileTree : Ff.cmd */
+CALL RxFuncAdd "SysLoadFuncs", "REXXUTIL", "SysLoadFuncs"   /*load system */
+CALL SysLoadFuncs
+ARG Parametre                                            /*check cmd line */
+Say "File Find (c) Thunus F. 1995 "                        /*Copyright    */
+IF Parametre = "" THEN                                     /*no arguments */
+        do
+         say 'File ? '                                     /*get them     */
+         parse pull parametre
+        end
+curdir = Directory()                                       /*save direct. */
+Call Directory '\'                                         /*goto root    */
+CALL SysFileTree Parametre, "Liste", "FOS"                 /* look for    */
+                                               /* files, store in liste   */
+                                               /* get only files, filename*/
+                                               /* scan subdir recursively */
+IF Liste.0 = 0 THEN                                    /* Nothing found   */
+        SAY "No files found "                          /* say it          */
+        ELSE                                           /* or              */
+			DO i=1 TO Liste.0
+                SAY Liste.i                            /* display list    */
+			END
+Call Directory Curdir                                  /* come back to    */
+                                                       /* where we were   */
+
+</PRE>Easy :-) 
+<H3>Disk report</H3><PRE>/* Int‚gration des fonctions REXXUTIL */
+CALL RXFUNCADD "SysLoadFuncs", "REXXUTIL", "SysLoadFuncs"
+CALL SysLoadFuncs
+/* Find informations on the hard disk       */
+/* using SysDriveInfo and SysDriveMap : Disk.cmd */
+parse arg Drive                                      /*check cmd line for drive */
+If Drive = "" Then                                   /* no drive given          */
+   Unite=left(directory(),1)      /* first letter of current directory is drive */
+   Else Unite=left(Drive,1)              /* else take first letter of argument  */
+                                           /* and now: get all info about drive */
+PARSE Value SysDriveInfo(unite":") WITH Identification Disponible Total  Label
+                                                              /* and display it */
+SAY "Identification : " Identification "   Name :" Label
+SAY "Total capacity : " Total " bytes.  Free: " Disponible
+SAY "Drives         : " SysdriveMap("A:")
+SAY "Available drive names :" SysDriveMap(,"FREE")
+</PRE>Piece of cake ! :-) 
+<H1><A name=GO2>Sample 2: Go/2 </A></H1>This one is a bit more complex, but 
+definitely worth it, imnsho :-) <BR>just give the last branch of the directory 
+and this batch will take you there. I had written such a program in Pascal under 
+Dos, and I use it all the time. when I switched to OS/2, no Pascal compiler was 
+available (back then). I thought it would be a good idea and a good training to 
+rewrite it completely from scratch in rexx. The idea is very simple, and based 
+on the SysFileTree function. SysFileTree can be told to report only directories. 
+So the system is basically the same as in the file find example: we search the 
+drive for all directories matching the argument and store this in a list. Then 
+display the list and let the user chose the directory wanted. Then take him/her 
+there. This is actually a watered down version of the program I am using. My 
+program adds colors and fancy prompt placing on the screen. I took all this out 
+since I felt it would only confuse the beginners. Feel free to enhance it. The 
+easiest way to add color is to use ANSI sequences. You can define each color and 
+then just display it before the text: <PRE>/* ANSI-values for colors */
+ESC    = '1B'x || "["   /* define ANSI-ESCape character */
+
+/*
+incidently the || means "glue those together" or as we scientist say:
+concatenate.
+*/
+
+normal  = 0           /* reset screen to white on black */
+bold    = 1
+black   = 0
+red     = 1
+green   = 2
+brown   = 3
+blue    = 4
+magenta = 5
+cyan    = 6
+white   = 7
+/* ANSI-values for fore-/background */
+foreground = 30         /* add color, e.g. 30 + 2 = 32 ==&gt; green foreground */
+background = 40         /* add color, e.g. 40 + 7 = 47 ==&gt; white background */
+
+screen_normal  = normal || ";" || foreground + white  || ";" || background + black
+text_highlight = screen_normal || ";" || foreground + brown + 8
+
+/* add ESCape to begin and "m" to the end to complete the ANSI-Escape-sequence */
+
+screen_normal      = ESC || screen_normal  || "m"
+text_highlight     = ESC || text_highlight || "m"
+
+Say " Hello " text_highlight " this is a " Screen_normal "test"
+
+</PRE>The other thing I use in my version, to move the cursor around the screen 
+where I want it is SysCurPos(). Go look it up and modify ! :-) here is the 
+simplified version: <PRE>/* Go Batch ! (C) Thunus F. 1995 Rev 950608-4 */
+                                   /* Init various REXX stuff */
+Call RxFuncAdd 'SysLoadFuncs', 'REXXUTIL', 'SysLoadFuncs'
+Signal on Syntax Name LoadCheck
+Call SysLoadFuncs
+LoadCheck:                      /* rc of 43 means REXXUTILs not found */
+If rc=43 Then Do
+   Say ''
+   Say 'ERROR: Not able to load REXXUTILs. Perhaps REXX not installed or'
+   Say '       REXXUTIL.DLL not found in a LIBPATH drive/directory.'
+   Exit
+End
+Signal On Failure Name FAILURE
+Signal On Syntax  Name SYNTAX
+Signal On Halt    Name HALT
+
+parse upper arg cible                                       /* get param  */
+Say "Go/2  (C) Thunus F. 1995 "                             /* none given */
+if cible = '' then Do
+    Say "Where do you want to go today ? "                  /* get some   */
+	pull cible
+   end
+unite=left(directory(),1)                                   /* get drive  */
+Say "Looking on drive "unite":"                     /* keep customer busy */
+Result = SysFileTree( '\'cible, 'Dirs', 'DOS' ) /* the real search engine */
+
+  IF Dirs.0 = 0 THEN
+        Do                                              /* found nothing */
+         SAY "Directory not found."                            /* say it */
+         Signal Done                                        /* finished  */
+        END
+
+  IF Dirs.0 = 1 THEN                                        /* found one */
+        Do
+         Say "New directory : "unite":"Dirs.1             /* say it */
+         call directory Dirs.1                           /* go there */
+         Signal Done                                    /* finished  */
+        END
+
+Do j = 1 to Dirs.0                                    /* found many */
+     Say "   =&gt; "  j  unite":"Dirs.j                /* display them */
+  end
+
+Say  '   Which  ? [ 1]'
+Pull OnYVa                                             /* get the chosen */
+If OnYVa = "" Then OnYVa = 1                    /* if return was pressed */
+                                                   /* then take option 1 */
+Say "New directory : "unite":"dirs.OnYVa              /* say where we go */
+call directory Trouve.OnYVa                                  /* go there */
+Signal Done                                                 /* finished  */
+
+/* end of batch file */
+
+SYNTAX:
+Say 'Syntax error at line ' sigl
+Signal DONE
+FAILURE:
+Say 'Failure error at line ' sigl
+Signal DONE
+HALT:
+Say 'Halt error at line ' sigl
+Signal DONE
+DONE:
+Call SysDropFuncs                                 /* unload rexx dll */
+Exit
+</PRE>
+<H1><A name=WPS>The WorkPlace Shell </A></H1>Another interesting point of the 
+OS/2 REXX is its ability to interface with the workplace Shell. That makes it 
+<STRONG>the</STRONG> language to create an install batch. Again you may want to 
+look up the specific procedures in the doc (you must have gathered by now that I 
+am NOT going to repeat information available somewhere else). 
+<H3>Install procedure </H3>This was originally created to install YARN (an 
+offline mail reader). <PRE>/* Yarn Installation (C) Thunus F. 1995 Rev 950530-1 */
+'@Echo Off'                                 /* Init various REXX stuff */
+Call RxFuncAdd 'SysLoadFuncs', 'REXXUTIL', 'SysLoadFuncs'
+Signal on Syntax Name LoadCheck
+Call SysLoadFuncs
+LoadCheck: /* rc of 43 means REXXUTILs not found */
+If rc=43 Then Do
+   Say ''
+   Say 'ERROR: Not able to load REXXUTILs. Perhaps REXX not installed or'
+   Say '       REXXUTIL.DLL not found in a LIBPATH drive/directory.'
+   Exit
+End
+Signal On Failure Name FAILURE
+Signal On Syntax  Name SYNTAX
+Signal On Halt    Name HALT
+
+                           /* you should understand this header by now */
+Call SysCls                                        /* Clean the screen */
+Say ''
+Say ''
+Say 'Installing YARN...'
+Say ''
+
+                                        /* Checking nothing is missing */
+
+Result = SysFileTree( 'YARN.EXE', 'Files', 'F' )
+If Files.0 = 0 Then
+  Do
+  Say 'ERROR: YARN.EXE not found! Installation cancelled.'
+  Signal DONE
+  End
+Result = SysFileTree( 'YARN.ico', 'Files', 'F' )
+If Files.0 = 0 Then
+  Do
+  Say 'ERROR: YARN.ico not found! Installation cancelled.'
+  Signal DONE
+  End
+
+</PRE>Followed here a complete list of all files that should be in the package. 
+we skip, you get the picture. <PRE>
+                                       /* Getting necessary parameters */
+Say 'Please enter the language you want to install (default English):'
+Pull Language
+If Language = "" Then Language = 'ENGLISH'              /* set default */
+ini = value('USER_INI',,'OS2ENVIRONMENT')         /* get default drive */
+tDrive = left(ini,1)                                      /* trim junk */
+instdir=tDrive':\OS2\APPS\YARN'          /* Create default install path*/
+Say 'Please enter the drive you boot OS/2 from (default 'tdrive':):'
+Pull Drive                                         /* get confirmation */
+If Drive = "" Then Drive = tdrive':'
+Say 'Please enter the full name of the directory to which you want'
+Say 'YARN installed (default 'instdir'): '
+Pull Directory
+If Directory = "" Then Directory = instdir
+Result = SysFileTree( Directory, 'Dirs', 'D' )
+If Dirs.0 = 0 Then
+  Do
+  Result = SysMkDir( Directory )                  /* Create directory */
+  if Result == 0 Then
+    Do
+    End
+  Else
+    Do
+    Say 'ERROR: Unable to create target directory('instdir'). Installation cancelled.'
+    Signal DONE
+    End
+  End
+Say ''
+
+/* start copy */
+
+Say ''
+Say 'Copying YARN.EXE to' Directory '...'
+Copy YARN.EXE Directory                  '1&gt;NUL'
+Say 'Copying YARNINST.EXE to' Directory '...'
+Copy YARNINST.EXE Directory                  '1&gt;NUL'
+</PRE>Followed here many files.. we skip again. <PRE>                                     /* depending on previous selection */
+Say 'Installing news help...'
+SELECT
+  When Language = 'ENGLISH'
+       Then
+       Copy english.new   Directory'\news.hlp   &gt;NUL'
+  When Language = 'FRANCAIS'
+       Then
+       Copy Francais.new  Directory'\news.hlp   &gt;NUL'
+  OTHERWISE
+        Do
+        Say 'unknown language requested. You get the default !'
+       Copy english.new   Directory'\news.hlp   &gt;NUL'
+        END
+END /* select*/
+Say 'Installing mail help...'
+SELECT
+  When Language = 'ENGLISH'
+       Then
+       Copy english.mai   Directory'\mail.hlp   &gt;NUL'
+  When Language = 'FRANCAIS'
+       Then
+       Copy Francais.mai  Directory'\mail.hlp   &gt;NUL'
+  OTHERWISE
+        Do
+        Say 'unknown language requested. You get the default !'
+       Copy english.new   Directory'\mail.hlp   &gt;NUL'
+        END
+END /* select*/
+Say 'Installing Documentation ...'
+SELECT
+  When Language = 'ENGLISH'
+       Then
+       Copy english.doc   Directory'\yarn.doc   &gt;NUL'
+  When Language = 'FRANCAIS'
+       Then
+       Copy Francais.doc  Directory'\yarn.doc   &gt;NUL'
+  OTHERWISE
+        Do
+        Say 'unknown language requested. You get the default !'
+        Copy english.doc   Directory'\yarn.doc   &gt;NUL'
+        END
+END /* select*/
+
+/*
+here we enter the section where I copy files which are not essentials
+and whose existence wasn't checked earlier. Any files absent in previous
+section would abort install, here we just go on.
+*/
+Say 'Copying various info files to' Directory '...'
+Result = SysFileTree( 'cvt08.EXE', 'Files', 'F' )
+If Files.0 = 0 Then  do
+ Say 'Watch out, file cvt08.exe missing..'
+ end
+ else Copy cvt08.exe Directory                  '1&gt;NUL'
+
+                            /* installing on desktop */
+
+/* This is what we came for, really :-)  check out the SysCreateObject */
+/* in the REXX online doc                                              */
+
+Say ''
+Say 'Creating program objects...'
+Say ''
+
+RetVal = SysCreateObject('WPFolder', 'Yarn Folder', '<WP_DESKTOP>','OBJECTID=<YARN_ICONS>;ICONFILE='directory'\yarn.ico', 'U')
+Say 'The program objects will be placed in the yarn folder...'
+Folder = '<YARN_ICONS>'
+Type = 'WPProgram'
+Title = 'YARN'
+Parms = 'PROGTYPE=PM;EXENAME='Directory'\YARN.EXE;STARTUPDIR='Directory';ICONFILE='directory'\yarn.ico'
+Result = SysCreateObject( Type, Title, Folder, Parms, 'ReplaceIfExists' )
+Say 'Yarn.exe installed'
+If Result = 1 Then
+  Title = 'Remove Group'
+  Parms =  'PROGTYPE=WINDOWABLEVIO;EXENAME='Directory'\RMNEWS.EXE;STARTUPDIR='Directory''
+  Result = SysCreateObject( Type, Title, Folder, Parms, 'ReplaceIfExists' )
+  Say 'RMnews.exe installed'
+  If Result = 1 Then
+    Title = 'Add Group'
+    Parms = 'MinWIN=<DESKTOP>;PROGTYPE=WINDOWABLEVIO;EXENAME='Directory'\NEWGROUP.EXE;STARTUPDIR='Directory''
+    Result = SysCreateObject( Type, Title, Folder, Parms, 'ReplaceIfExists' )
+    Say 'newgroup.exe installed'
+    If Result = 1 Then
+      Title = 'User Setup'
+      Parms = 'PROGTYPE=WINDOWABLEVIO;EXENAME='Directory'\ADDUSER.EXE;STARTUPDIR='Directory''
+      Result = SysCreateObject( Type, Title, Folder, Parms, 'ReplaceIfExists' )
+      Say 'adduser.exe installed'
+
+/* finally, updating the configuration by running the config program */
+
+      If Result = 1 Then
+        DO
+        n=setlocal()                /* create a local copy of environment */
+        p=VALUE('yarn',directory,'OS2ENVIRONMENT'); /*store YARN in it */
+        say 'What is your Home directory ?'
+        pull homedir
+        q=VALUE('home',homedir,'OS2ENVIRONMENT');  /* and home dir */
+        yarninst.exe 'Drive'                  /* launch external install */
+        AddUser.exe                                 /* and again */
+        n=endlocal()                          /* delete local environment */
+        say ''
+        Say 'Yarn was successfully installed.'     /* that's it :-) */
+        Exit
+        End
+
+Say 'ERROR: Unable to create objects. Installation cancelled.'
+Exit
+
+SYNTAX:
+Say 'Installation Syntax error at line ' sigl
+Signal DONE
+FAILURE:
+Say 'Installation failure error at line ' sigl
+Signal DONE
+HALT:
+Say 'Installation halt error at line ' sigl
+Signal DONE
+DONE:
+Call SysDropFuncs
+Exit
+</PRE><BR>
+<H3>Recover lost wps objects </H3>Did you delete your Command Prompts ? Shred 
+your Shredder ?<BR>This program restores the standard WPS desktop objects.<BR>It 
+will preserve any current settings/objects you may have created and this is its 
+advantage over the Alt-F1 or MAKEINI method.<BR><PRE>/* ReCreate.CMD - restore lost desktop objects   */
+/* by Greg Czaja - July 29, 1992                 */
+/*               - April 9, 1993  ver.2          */
+/*                 handle 2.1-style INI.RC       */
+Call RxFuncAdd 'SysLoadFuncs', 'RexxUtil', 'SysLoadFuncs'
+Call SysLoadFuncs;
+SysBootDrive=Filespec('Drive',Value('SYSTEM_INI',,'OS2ENVIRONMENT'));
+file_name=SysBootDrive||'\OS2\INI.RC';
+Say "The program will list all single standard objects from your desktop"
+Say "Reply Y(es) if you want recreate the listed object - E(nd) to end the program"
+Say "N(o) is the default if you press ENTER:"
+Do While Lines(file_name) &gt; 0;
+line=Linein(file_name);
+If line='' Then Iterate;                      /* skip blanks   */
+Parse Var line '"PM_InstallObject"' line;
+If line='' Then Iterate;                      /* skip others   */
+Parse Var line '"'head'" 'line;               /* get header    */
+Parse Var line '"'setup'"' .;                 /* get setup string */
+Parse Var head title';'object';'location';' . ;
+Say title "- Yes/No/End ?";
+Pull reply ; 
+If Left(reply,1) ='E' Then Leave;
+If Left(reply,1) &lt;&gt; 'Y' Then Iterate;
+If SysCreateObject(object,title,location,setup,'Update') = 0
+   Then Say 'Error creating:' title;           /* actual recreate */
+   Else Say title 'created !';
+End;
+rc=Stream(file_name,'C','Close');
+say 'Done !'
+</PRE><BR>
+<H1><A name=VISUAL>Go Visual </A></H1>In addition to being a great language, 
+REXX is open to extension via DLL. One such extension is an IBM EWS which 
+enables REXX to make use of a pretty PM interface as well. The power of REXX and 
+the fancy Visual Interface make it possible to write real PM applications in 
+REXX. The extender is called VREXX, my copy dates from 1992 and the whole 
+package is about 190k. Using this, I have written a rexx batch that will let you 
+choose a service provider from the presentation manager, define souper options, 
+place the call, retrieve the mail and then pop up a window when all is done. 
+There is of course a window that allow you to monitor the progress of the 
+call.<BR>Once again: the complete doc comes with the package, so refer to those 
+for specific problems. This is just another sample (there are more supplied with 
+the package and well worth studying) to show you how to combine the power of the 
+rexx engine with a pretty face. Basically all the VREXX package does is to 
+rpovide a nicer "say" and a nicer "pull" :-) <BR>. Here we go:<BR><PRE>/* qwkmail using VREXX  V 950721.1 (C) Thunus F. May be distributed Freely */
+
+'@echo off'
+Curdir= directory()                             /* store current directory */
+Call RxFuncAdd 'SysLoadFuncs', 'REXXUTIL', 'SysLoadFuncs'
+Signal on Syntax Name LoadCheck
+Call SysLoadFuncs
+LoadCheck:                           /* rc of 43 means REXXUTILs not found */
+If rc=43 Then Do
+   Say ''
+   Say 'ERROR: Not able to load REXXUTILs. Perhaps REXX not installed or'
+   Say '       REXXUTIL.DLL not found in a LIBPATH drive/directory.'
+   Exit
+End
+call RxFuncAdd 'VInit', 'VREXX', 'VINIT'                /*Init Vrexx code */
+initcode = VInit()
+if initcode = 'ERROR' then signal ERROR
+
+signal on failure name FAILURE
+signal on halt    name HALT
+signal on syntax  name SYNTAX
+
+/*
+   define some variables, the only things you have to change
+   except
+   if you use the alternate dialer: search alternate and uncomment
+      (2 places)
+*/
+
+network='mynet'
+user='pub11111'
+password='01101010'
+phone='101010'
+speed=57600
+comport=1
+mailserver='pophost.mynet.ne'
+nntpserver='news.mynet.ol'
+tcpipbin  ='D:\TCPIP\BIN'
+tcpipetc  ='D:\TCPIP\ETC'
+souperhome='D:\TCPIP\SOUPER'
+yarntemp  ='D:\TCPIP\YARN\TEMP'
+yarnhome  ='D:\TCPIP\YARN'
+
+                                         /* open a window and draw some text */
+
+win.left   = 5
+win.right  = 35
+win.top    = 100
+win.bottom = 90
+id = VOpenWindow('QwkMail Info', 'BLUE', win)
+
+text.1 = ' Launching Dialer'
+text.2 = ' Please standby...'
+call VForeColor id, 'WHITE'
+call VSetFont id, 'TIME', 17
+x = 10
+y = 800
+do i = 1 to 2
+   call VSay id, x, y, text.i
+   y = y - 220
+end
+
+
+newdir=directory(tcpipbin)                        /* change to tcpip dir */
+                                                  /* and launch PPP      */
+'start /min /c ppp.exe com'comport speed 'rtscts modem defaultroute priority 1 exit connect "innetscr.cmd"'
+                                                  /* is PPP launched ?   */
+Result = SysFileTree( tcpipetc'\ppp0.pid', 'Files', 'F' )
+If Files.0 = 1 Then signal pppAlive               /* yes : branch        */
+text.1 = ' PPP Not started yet '                  /* no  : say it        */
+text.2 = ' waiting '
+call VClearWindow id
+call VForeColor id, 'WHITE'
+call VSetFont id, 'TIME', 17
+x = 10
+y = 800                                          /* do actual display    */
+do i = 1 to 2
+   call VSay id, x, y, text.i
+   y = y - 220
+end
+Loop:                                           /* Keep on waiting       */
+Result = SysFileTree( tcpipetc'\ppp0.pid', 'Files', 'F' )
+If Files.0 = 1 Then signal pppAlive
+Signal Loop
+
+PPPALive:                                       /* PPP woke up           */
+text.1 = ' PPP Alive ! '
+text.2 = ' maybe online ! :-)'
+call VClearWindow id
+call VForeColor id, 'WHITE'
+call VSetFont id, 'TIME', 17
+x = 10
+y = 800
+do i = 1 to 2
+   call VSay id, x, y, text.i
+   y = y - 220
+end
+/*
+Here comes the interesting part: the lists. We create 2 lists:
+one with the name of the option to be displayed, and one with the actual
+parameter for souper. The indexes match, of course.
+*/
+                                                
+                                               
+list.0 = 11                                      /* number of items in list */
+par.0 = 11                                            /* params for souper */
+List.1 = 'Check for new newsgroups'
+par.1= '-a '
+List.2 = 'Add new newsgroup'
+par.2=''                              /* those 2 branch to a special routine */
+List.3 = 'Display existing newsgroup'
+par.3 =''
+List.4 = 'Kill articles longer than 1200 lines'
+par.4  = '-l 1200 '
+List.5 = 'Create SOUP summary'
+par.5  = '-u '
+List.6 = 'Ignore IBM Internet Connection settings'
+par.6  = '-i '
+List.7 = 'Mark articles in newsgroups as read'
+par.7  = '-c 10'
+List.8 = 'Do not get mail'
+par.8  = '-m '
+List.9 = 'Do not get newsgoups'
+par.9  = '-n '
+List.10 = 'Read only: don"t empty mailbox'
+par.10  = '-r '
+List.11 = 'Do not process news Xref headers'
+par.11  = '-x '
+
+param=''
+
+sel.0=1                               /* initialize the selection list*/
+sel.1=list.11
+
+call VDialogPos 20, 80                        /* display everything */
+call VCheckBox 'Wait for connect then Select items', list, sel, 1
+
+Do i = 1 to sel.0                         /* for each item selected */
+  Do j = 1 to List.0                      /* match against each item in list*/
+   if sel.i = list.j then                 /* if found */
+   Do
+   param=(param||par.j)                   /* add to parameter */
+   if sel.i = 'Add new newsgroup'         /* special case */
+        then do
+        /* VInputBox */
+         prompt.0 = 1                                      /* get input */
+         prompt.1 = 'Name of the newsgroup: '
+         button = VInputBox('Add NewsGroup    ', prompt, 20, 3)
+         if button = 'OK' then do
+             msg.0 = 2
+             msg.1 = prompt.vstring
+             msg.2 = 'added to newsrc'
+             'echo 'prompt.vstring': &gt;&gt; 'souperhome'\newsrc'
+            end
+          else do
+           msg.0 = 1
+           msg.1 = 'Operation canceled'
+          end
+          call VMsgBox 'Add NewsGroup   ', msg, 1
+        end /* new newsgroup */
+   if sel.i = 'Display existing newsgroup'           /* special case */
+        then do
+         call sysfilesearch ':', souperhome'\newsrc', 'newsl.'
+         if newsl.0=0 then
+               do
+               newsl.0=1
+               newsl.1='No active newsgroups'
+               end
+         call VMsgBox 'Display NewsGroup', newsl, 1
+        end /* existing newsgroup */
+   end /* if sel.i=list.i*/
+end /* do i=1 to sel.0*/
+
+</PRE>/* ******************************************************<BR>so far we 
+have the parameters for souper and PPP is launched, but we're not <BR>sure PPP 
+is actually online yet. for this we're waiting for a semaphore file<BR>which is 
+created by the rexx batch driving PPP and created when the batch is<BR>satisfied 
+that PPP has indeed a valid connect and that a PPP session is indeed<BR>active. 
+so, we're still waiting 
+<BR>********************************************************* */<BR><PRE>Result = SysFileTree( tcpipbin'\pppalive.0', 'Files', 'F' ) 
+If Files.0 = 1 Then signal pppvivant
+text.1 = ' PPP not active yet '
+text.2 = ' waiting '
+call VClearWindow id
+call VForeColor id, 'WHITE'
+call VSetFont id, 'TIME', 17
+x = 10
+y = 800
+do i = 1 to 2
+   call VSay id, x, y, text.i
+   y = y - 220
+end
+Loop2:
+Result = SysFileTree( tcpipbin'\pppalive.0.', 'Files', 'F' )
+If Files.0 = 1 Then signal pppvivant
+Signal Loop2
+
+PPPvivant:
+text.1 = ' PPP Connected '
+text.2 = ' online at last !'
+call VClearWindow id
+call VForeColor id, 'WHITE'
+call VSetFont id, 'TIME', 17
+x = 10
+y = 800
+do i = 1 to 2
+   call VSay id, x, y, text.i
+   y = y - 220
+end
+
+                                               /* beep beep...      */
+call beep 262, 250
+call beep 294, 250
+Call SysSleep 10                              /* give time to read */
+
+text.1 = ' Starting Souper'
+if sel.0 &gt; 0 then
+     Text.2 =  'Options: 'param
+   else
+     Text.2 = 'No parameters'
+
+call VClearWindow id
+call VForeColor id, 'WHITE'
+call VSetFont id, 'TIME', 17
+x = 10
+y = 800
+do i = 1 to 2                        /* display parameters if any */
+   call VSay id, x, y, text.i        /* more for debug purpose :-) */
+   y = y - 220
+end
+
+                                             /* give time to read */
+Call SysSleep 10
+                                 /* insert some variables in os/2 environment */
+
+p=VALUE('HOME',souperhome,'OS2ENVIRONMENT')
+p=VALUE('NNTPSERVER',nntpserver,'OS2ENVIRONMENT')
+p=VALUE('MAILSERVER',mailserver,'OS2ENVIRONMENT')
+p=VALUE('USER',user,'OS2ENVIRONMENT')
+p=VALUE('PASSWORD',password,'OS2ENVIRONMENT')
+newdir=directory(yarntemp)
+                                                    /* anything going out ? */
+Result = SysFileTree( 'REPONSE.ZIP', 'Files', 'F' )
+newdir=directory(souperhome)
+
+If Files.0 = 0 Then signal NORMAL                  /* no */
+
+EXPORT:                                            /* yes */
+text.2 = ' Exporting and sending mail'
+call VClearWindow id
+call VForeColor id, 'WHITE'
+call VSetFont id, 'TIME', 17
+x = 10
+y = 800
+do i = 1 to 2
+   call VSay id, x, y, text.i                    /* say it */
+   y = y - 220
+end
+
+'unzip -o 'yarntemp'\reponse.zip'               /* unzip */
+'del 'yarntemp'\reponse.zip'
+'souper -s'                                     /* send */
+
+NORMAL:
+text.2 = ' Getting Mail and Newsgroups'
+call VClearWindow id
+call VForeColor id, 'WHITE'
+call VSetFont id, 'TIME', 17
+x = 10
+y = 800
+do i = 1 to 2
+   call VSay id, x, y, text.i
+   y = y - 220
+end
+                                           /* actual souper session */
+'souper ' mailserver user password param
+
+text.1 = ' Souper Done'
+text.2 = ' Closing Session'
+call VClearWindow id
+call VForeColor id, 'WHITE'
+call VSetFont id, 'TIME', 17
+x = 10
+y = 800
+do i = 1 to 2
+   call VSay id, x, y, text.i                /* end of session */
+   y = y - 220
+end
+
+tcpipbin'\pppkill'
+'killem ppp.exe'                 /* disconnect again, just in case */
+
+                                /* prepare the message */
+msg.0 = 3
+msg.1 = ' Session Closed.'
+msg.2 = ' '
+                                                    /* any mail ? */
+Result = SysFileTree( souperhome'\*.msg', 'Files', 'F' )
+If Files.0 = 0 Then                                      /* no */
+  Do
+   msg.3 = ' No Mail'                      /* complete message */
+  End
+  Else                                                /* yes */
+  Do
+   Newdir=Directory(souperhome)
+   text.1 = ' Importing received mail '
+   text.2 = ' Please wait...'
+   call VClearWindow id
+   call VForeColor id, 'WHITE'
+   call VSetFont id, 'TIME', 17
+   x = 10
+   y = 800
+    do i = 1 to 2
+     call VSay id, x, y, text.i
+     y = y - 220
+    end
+   p=VALUE('HOME',yarnhome,'OS2ENVIRONMENT')     /* needed to import */
+   p=VALUE('YARN',yarnhome,'OS2ENVIRONMENT')
+   'zip -0m soup.zip areas *.msg'                          /* unzip */
+   Newdir=Directory(yarnhome)
+   'import 'souperhome'\soup.zip'                         /* import */
+   msg.3 = ' You have Mail'                      /* complete message */
+  End
+
+
+call VDialogPos 20, 90
+Call VMsgBox 'QwkMail Ack', msg, 1 /* display actual message of end of session */
+
+Signal CLEANUP
+
+                                                          /* end of batch file */
+
+ERROR:
+Say 'Installation error at line ' sigl
+Signal CLEANUP
+
+FAILURE:
+Say 'Failure error at line ' sigl
+Signal CLEANUP
+
+HALT:
+Say 'Halt error at line ' sigl
+Signal CLEANUP
+
+SYNTAX:
+Say 'Syntax error at line ' sigl
+Signal CLEANUP
+
+CLEANUP:
+                                               /* clean semaphore */
+   'del 'tcpipetc'\ppp0.pid '
+   'del 'tcpipbin'\pppalive.0'
+   newdir = directory(curdir)                /* back to starting dir */
+   call VExit                               /* unload vrexx dll */
+
+exit                                        /* end of batch */
+</PRE>The main point of this batch is of course the use of the list feature, and 
+the "prompt for string" dialog box as well as how to display what's inside an 
+ASCII file (in the special parameter routines). <BR>In the same way, you can 
+easily build a batch that will display a choice of service providers to call, or 
+several phone numbers for different POP if you travel frequently (if there are 
+several POP where you live, a better option is to rig the PPP driving batch to 
+have them call each other in turn when one is busy).<BR>Again, for more on 
+VREXX, see the included documentation. 
+<H1><A name=References>References</A></H1>Well, first things first. For once, I 
+thought that the online REXX reference was very well done. You should have a 
+<B>REXX.INF</B> and a <B>REXXAPI.INF</B> on your hard disk somewhere. I suggest 
+that you read those, they are imo surprisingly well done.<BR>I have also found 
+the <B>REXX tutorial for complete beginners</B> to be a formidable source of 
+enlightment. This document has been ported from a UNIX version for IMC Unix. It 
+was written by Ian Collier. As far as I know it is currently maintained by <A 
+href="mailto:papresco@undergrad.math.uwaterloo.ca">Paul Prescod</A>. <BR>I also 
+used a text file about <B>sysutils</B> made by Michael Lamb.<BR>There are most 
+likely dozens of files floating around with loads of information, as well as 
+books. I mostly learn by looking at code, so I also downloaded all the rexx 
+files I could get my hands on to try and see how it worked.<BR>Have also a look 
+<A href="http://www.yahoo.com/Computers/Programming_Languages/Rexx/">here</A> 
+and this brilliant repository should contain all you want and more: <A 
+href="http://www.leo.org/pub/comp/os/os2/rexx/index.html">Leo.org </A>Finally, 
+there is also a file called <STRONG>ADVREXX</STRONG> which discusses many 
+interesting aspects of Rexx. It can be found, along with other resources on the 
+<A href="http://www.quercus-sys.com/">Quercus Systems Web pages</A>. Of course 
+the definite reference is at <A href="http://www2.hursley.ibm.com/rexx">IBM</A>. 
+Check out with the <A 
+href="http://www2.hursley.ibm.com/rexx/mfcsumm.htm">creator</A> of the language 
+as well. <BR>
+<HR>
+Back to <A 
+href="file:///Z:/yousefan/rexxhtml/programming%20rexx.htm#Table">[Table]</A> 
+<HR>
+
+<H5>Version 960622 <A href="http://www.innet.net/~pub00071">Francois J. Thunus 
+</A>(<A href="mailto:thunus@telematique.org">thunus@telematique.org</A>), 
+(c)1996 
+<HR>
+</H5></BODY></HTML>

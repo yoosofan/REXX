@@ -1,0 +1,43 @@
+ahmad Programmer Error in acess to file for II
+CanNotOpenFile :CAN NOT OPEN FILE ::name
+CanNotReadFile :
+UnmatchComment: UNMATCH  COMMENT IN FILE :::nameFile
+CanNotPointDuplicate:  you can not point after point deffer from IBM REXX
+AfterPointShouldBeNumber:
+AfterEShouldBeNumber:in scince number after E should be number
+UnMathQuote: un match quote
+UnExpectedCharacter:
+UnmatchParantes:   rparen ::: ')'::: expected
+UnExpectedToken:   this token unExpected
+needTokenInParen:   value between  ::: '( )'::: expected
+AfterAssignShouldExpr:   AFTER ASSIGNMENT SHOULD BE AN EXPRESSION ::
+AfterStmtEndStmt:  AFTER STATEMENT SHOULD BE A SEMICOLON OR ENDLINE 'N'  ::
+AfterExitNotExpr: AFTER EXIT STATEMENT SHOULD NOT ANY EXPRSSION ::
+AfterCommaShouldName:  AFTER comma SHOULD BE A NAME OF VARIABLE .DEFFERRNT ROM IBM REXX::
+OnlyNameExpectedPA:IN ARG AND PULL INSTRUCTION ONLY VAR NAME AND ARRAY EXPECTED
+NameExpectedAfterComma:  IN ARG AND PULL INSTRUCTION VAR NAME AND ARRAY EXPECTED AFTER COMMA.
+ExprExpected:   exprddion needed  here  ::
+UnExpectedUnary:after unary operator you can not use )  or constant String
+TwoArgStmt:  TWO ARG INSTRUCTION IN ONE PROCEDURE !!!!!
+MaxLineInProcedure :  GREATER THAN THE MAXIMUM OF LINE IN ON PROCEDURE
+NoStatementInProc:   EXPECTED INSTRUCTION PROCEDURE EMPTY!!!!
+UnExpectedEndInstr:  unExpectd END INSTRUCTION
+UnExpectedInstruction:	UNEXPECTED INSTRUCTION
+ControlVarTwoSame:CAN NOT HAVE TWO CONTROL VARIABLE WITH THE SAME NAME
+ExprssionNeeded:EXPRSSION NEEDED HERE
+MaximumLengthOfNameError:MAXIMUM OF LENGTH NAME REACHED
+ThenNeeded:THEN NEEDED HERE
+MaxOfWhen:MAXIMUM OF WHEN IN SELECT IS 300
+EndExpectedNoEOF:END INSTRCUCTION EXPECTED  EOF ENCOUNTER
+EndExpectedNoLabel:END INSTRCUCTION EXPECTED  NO LABEL
+AssignExpectedInDoTo:ASSIGN EXPECTED IN  do to  INSTRUCTION
+NameOfConVarExpected:NAME OF CONTROL VARIABLE EXPECTED
+ControlVarNotFound:THE NAME AFTER LEAVE INSTRUCTION IS NOT A CONTROL VARIABLE
+LeaveShouldInLoop:leave instruction should be in  any loop
+AfterLeaveOnlyName:after leave should be only  a  ( Name ) or (Array)
+AfterThenShouldStmt:AFTER THEN SHOULD BE INSTR
+InWhenThenNeeded:IN  Select  THEN NEEDED HERE
+AfterExposeShouldName:AFTER EXPOSE SHOULDE BE NAME
+AfterSelectShouldEnd:AFTER SELECT SHOULD ' END '
+MaximumLengthOfNameError
+
