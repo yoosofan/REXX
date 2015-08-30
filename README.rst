@@ -5,7 +5,7 @@ I've used Borland C++ 4.5 compiler to compile the code of this project.
 Internet was not spread in Iran when I was writing this interpreter. 
 Therefore my knowledge about REXX was based on what Dr. Towhidi taught me and some few documents.
 
-REXX is a very simple programming language for beginner. 
+REXX is a very simple programming language for beginners. 
 But somehow writing its interpreter is hard especially when you want to write it on DOS with limited RAM support.
 
 In the first course of computer programming, Dr. Towhidi taught REXX on IBM 370. 
