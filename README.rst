@@ -1,4 +1,4 @@
-This is my BS final project on writing an interpreter for REXX programming language under DOS operating system.
+This is my BS final project on writing an interpreter for REXX programming language on DOS operating system.
 
 I've used Borland C++ 4.5 compiler to compile the code of this project.
 
